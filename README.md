@@ -33,4 +33,12 @@ Inspection-robot sensor pod isolating base vibrations/external disturbances.
 ![output](https://github.com/user-attachments/assets/0a99c6fa-a127-4f9d-972f-68bc9bc6e79f)
 
 
-UKF often yields the lowest peaks and \~10–15% lower velocity RMSE vs EKF under mismatch; SLF sits between, with robust tuning narrowing the gap.
+RMSE after a 1 s transient, three random seeds (MATLAB R2025b):
+
+| | Position [µm] | Velocity [mm/s] | Force [N] |
+|---|---|---|---|
+| EKF | 1939–2083 | 43.8–56.7 | 1.27–1.49 |
+| UKF | within 0.2% of EKF | within 0.2% | within 0.3% |
+| SLF | within 0.4% of EKF | within 0.4% | within 0.3% |
+
+For this system the three filters give essentially the same answer. The nonlinearity is mild at these displacement amplitudes, so first-order linearization, the unscented transform and statistical linearization all see nearly the same model. A case with larger excursions into the nonlinear spring region would be needed to separate them.
